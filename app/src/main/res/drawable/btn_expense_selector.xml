@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFC107"/> <!-- Yellow background -->
+            <stroke android:width="3dp" android:color="#FF0000"/> <!-- Red stroke -->
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFC107"/> <!-- Yellow background -->
+            <stroke android:width="3dp" android:color="#FFFFFF"/> <!-- White stroke -->
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+</selector>

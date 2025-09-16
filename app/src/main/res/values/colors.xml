@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+        <color name="purple_200">#BB86FC</color>
+        <color name="purple_500">#6200EE</color>
+        <color name="purple_700">#3700B3</color>
+        <color name="teal_200">#03DAC5</color>
+        <color name="teal_700">#018786</color>
+
+    <color name="red">#D32F2F</color>
+    <color name="green">#388E3C</color>
+    <color name="darker_gray">#616161</color>
+    <color name="light_gray">#BDBDBD</color>
+
+        <!-- Custom colors for your app -->
+        <color name="history_header">#2196F3</color> <!-- Blue -->
+        <color name="history_bg">#F5F5F5</color>     <!-- Light Gray -->
+        <color name="history_item_bg">#FFFFFF</color> <!-- White for list items -->
+
+        <color name="dark_gray">#1E1E1E</color>
+
+</resources>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B1D2C"
+    tools:context=".ActivityInfo">
+    <TextView
+        android:id="@+id/welcm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        />
+    <TextView
+        android:id="@+id/ExpMng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expense Manager"
+        android:textColor="@color/white"
+        android:layout_below="@+id/welcm"
+        android:textSize="38dp"
+        android:layout_marginStart="20dp"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ExpMng"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Enter Name"
+        android:textColor="@color/white"
+        android:textColorHint="#3C434B"
+        android:layout_marginTop="40dp"
+        />
+
+    <Button
+        android:id="@+id/btnnext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:hint="Next"
+        android:textColorHint="@color/white"
+        android:backgroundTint="#FFC107"
+        />
+
+
+
+
+</RelativeLayout>
