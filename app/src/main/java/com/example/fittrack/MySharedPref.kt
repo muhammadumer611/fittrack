@@ -28,13 +28,19 @@ class MySharedPref(context: Context) {
     // ✅ Get complete list
     fun getCardItemList(): List<carditem> {
         val json = sharedPref.getString(defaultKey, null)
-        return if (json != null) {
-            val type = object : TypeToken<List<carditem>>() {}.type
-            gson.fromJson(json, type)
+
+        return if (!json.isNullOrEmpty()) {
+            try {
+                val type = object : TypeToken<List<carditem>>() {}.type
+                gson.fromJson<List<carditem>>(json, type) ?: emptyList()
+            } catch (e: Exception) {
+                emptyList() // agar parsing fail ho jaye to crash na ho
+            }
         } else {
             emptyList()
         }
     }
+
 
     // ✅ Save full card item list (overwrite)
     fun saveCardItemList(list: List<carditem>) {
@@ -85,7 +91,7 @@ class MySharedPref(context: Context) {
 
     // ✅ Clear only history
     fun clearAllHistory() {
-        editor.remove(defaultKey).apply()
+        saveCardItemList(emptyList())
     }
 
     // ✅ Save full history (overwrite)
@@ -111,3 +117,4 @@ class MySharedPref(context: Context) {
         return sharedPref.getString(timeKey, "") ?: ""
     }
 }
+

@@ -45,41 +45,19 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
         sharedPref = MySharedPref(this)
         carditem = carditem()
 
-        adapter = CardAdapter(cardsList, this@ActivityCountExpense)
-        binding.recyclerview.layoutManager = GridLayoutManager(this@ActivityCountExpense, 4)
-        binding.recyclerview.adapter = adapter
-
-        // 👉 Default filter (screen khulte hi apply ho jayega)
-        selection = "Expense"
-        toggleSelection(true)
-        adapter.filter("Expense")
-        binding.recyclerview.visibility = View.VISIBLE
-
-        // Default AddExpense visible
-        binding.AddExpense.visibility = View.VISIBLE
-        binding.AddIncome.visibility = View.GONE
-
         binding.btnExpense.setOnClickListener {
             selection = "Expense"
-            toggleSelection(true)
-            adapter.filter("Expense")
-            binding.recyclerview.visibility = View.VISIBLE
-
-            binding.AddExpense.visibility = View.VISIBLE
-            binding.AddIncome.visibility = View.GONE
-
+            toggleSelection(isExpense = true)
+            showTopText(isExpense = true)
+            showCards()
             Toast.makeText(this, "Expense Selected", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnIncome.setOnClickListener {
             selection = "Income"
-            toggleSelection(false)
-            adapter.filter("Income")
-            binding.recyclerview.visibility = View.VISIBLE
-
-            binding.AddIncome.visibility = View.VISIBLE
-            binding.AddExpense.visibility = View.GONE
-
+            toggleSelection(isExpense = false)
+            showTopText(isExpense = false)
+            showCards()
             Toast.makeText(this, "Income Selected", Toast.LENGTH_SHORT).show()
         }
 
@@ -87,6 +65,7 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
             val calendar = Calendar.getInstance()
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
+
             val timePickerDialog = TimePickerDialog(
                 this@ActivityCountExpense,
                 { _, selectedHour, selectedMinute ->
@@ -158,11 +137,40 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
             sharedPref.saveCardItem(carditem)
             Toast.makeText(this@ActivityCountExpense, "Data saved successfully!", Toast.LENGTH_SHORT).show()
         }
+
+        // 🔹 Default Expense filter apply kar diya
+        selection = "Expense"
+        toggleSelection(isExpense = true)
+        showTopText(isExpense = true)
+        showCards()
     }
 
     override fun onItemclick(type: String) {
         Toast.makeText(this@ActivityCountExpense, "Category: $type", Toast.LENGTH_SHORT).show()
         carditem.title = type
+    }
+
+    private fun showCards() {
+        val filteredList = if (selection == "Expense") {
+            filterCards("Expense")
+        } else {
+            filterCards("Income")
+        }
+
+        adapter = CardAdapter(filteredList, this@ActivityCountExpense)
+        binding.recyclerview.layoutManager = GridLayoutManager(this@ActivityCountExpense, 4)
+        binding.recyclerview.adapter = adapter
+        binding.recyclerview.visibility = View.VISIBLE
+    }
+
+    private fun showTopText(isExpense: Boolean) {
+        if (isExpense) {
+            binding.AddExpense.visibility = View.VISIBLE
+            binding.AddIncome.visibility = View.GONE
+        } else {
+            binding.AddIncome.visibility = View.VISIBLE
+            binding.AddExpense.visibility = View.GONE
+        }
     }
 
     private fun toggleSelection(isExpense: Boolean) {
@@ -173,5 +181,9 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
             binding.btnIncome.setBackgroundResource(R.drawable.btn_income_selector)
             binding.btnExpense.setBackgroundResource(R.drawable.default_background)
         }
+    }
+
+    private fun filterCards(type: String): List<carditem> {
+        return cardsList.filter { it.catageorytype == type }
     }
 }

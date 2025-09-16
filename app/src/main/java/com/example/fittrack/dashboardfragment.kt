@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.fittrack.carditem
+
 import com.example.fittrack.databinding.FragmentDashboardfragmentBinding
 import com.github.anastr.speedviewlib.TubeSpeedometer
 import kotlin.random.Random
