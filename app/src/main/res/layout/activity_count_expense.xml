@@ -38,7 +38,7 @@
             android:layout_marginStart="20dp"
             android:textStyle="bold"
             android:visibility="gone"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnsave"

@@ -157,15 +157,15 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
                 if (totalIncome > 0) {
                     val percentUsed = (totalAmount.toDouble() / totalIncome.toDouble()) * 100
                     if (percentUsed >= 80) {
-                      showNotification(
-                          "⚠️ Budget Alert",
-                          "Dear User\uD83C\uDF39 You have used you 80% of Income!"
-                      )
-                  }
+                        showNotification(
+                            "⚠️ Budget Alert",
+                            "Dear User\uD83C\uDF39 You have used you 80% of Income!"
+                        )
+                    }
                 }
 
             }
-                else {
+            else {
                 val previousIncome = sharedPref.getTotalIncome()
                 val totalIncome = amount + previousIncome
                 sharedPref.saveTotalIncome(totalIncome)
