@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.fittrack.carditem
 
 import com.example.fittrack.databinding.FragmentDashboardfragmentBinding
 import com.github.anastr.speedviewlib.TubeSpeedometer
@@ -85,7 +86,10 @@ class dashboardfragment : Fragment(), CardAdapter.CardInterfaceListener {
             carditem(R.drawable.health, "Health"),
             carditem(R.drawable.utilities, "Utilities"),
             carditem(R.drawable.fee_receipt__1_, "Fees"),
-            carditem(R.drawable.personal, "Fees")
+            carditem(R.drawable.personal, "personal"),
+            carditem(R.drawable.royality, "Royalty"),
+            carditem(R.drawable.growth, "Growth"),
+            carditem(R.drawable.lease, "Lease")
         )
 
         adapter = CardAdapter(cardsList, this@dashboardfragment)

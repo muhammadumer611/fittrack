@@ -1,12 +1,19 @@
 package com.example.fittrack
 
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.fittrack.databinding.ActivityCountExpenseBinding
 import java.util.*
@@ -17,6 +24,7 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
     private lateinit var sharedPref: MySharedPref
     private lateinit var carditem: carditem
     private lateinit var adapter: CardAdapter
+    private var isExpense : Boolean=false
 
     private var selection = ""
     private var selectedDate: String = ""
@@ -33,7 +41,10 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
         carditem(R.drawable.personal, "Personal", "Expense"),
         carditem(R.drawable.bnous, "Bonus", "Income"),
         carditem(R.drawable.alounce, "Allowance", "Income"),
-        carditem(R.drawable.salary, "Salary", "Income")
+        carditem(R.drawable.salary, "Salary", "Income"),
+        carditem(R.drawable.royality, "Royalty", "Income"),
+        carditem(R.drawable.growth, "Growth", "Income"),
+        carditem(R.drawable.lease, "Lease", "Income")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +53,20 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
         binding = ActivityCountExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPref = MySharedPref(this)
+        sharedPref = MySharedPref(this@ActivityCountExpense)
         carditem = carditem()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
+            }
+        }
+
 
         binding.btnExpense.setOnClickListener {
+            binding.btnExpense.background = ContextCompat.getDrawable(this, R.drawable.selected_background)
+            binding.btnIncome.background = ContextCompat.getDrawable(this, R.drawable.default_background)
+
+            isExpense=true
             selection = "Expense"
             toggleSelection(isExpense = true)
             showTopText(isExpense = true)
@@ -54,6 +75,9 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
         }
 
         binding.btnIncome.setOnClickListener {
+            binding.btnExpense.background = ContextCompat.getDrawable(this, R.drawable.default_background)
+            binding.btnIncome.background = ContextCompat.getDrawable(this, R.drawable.selected_background)
+            isExpense=false
             selection = "Income"
             toggleSelection(isExpense = false)
             showTopText(isExpense = false)
@@ -127,7 +151,21 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
                 val totalAmount = amount + previousAmount
                 sharedPref.saveTotalAmount(totalAmount)
                 carditem.totalAmount = totalAmount
-            } else {
+
+                // 🔹 Check 80% income used
+                val totalIncome = sharedPref.getTotalIncome()
+                if (totalIncome > 0) {
+                    val percentUsed = (totalAmount.toDouble() / totalIncome.toDouble()) * 100
+                    if (percentUsed >= 80) {
+                      showNotification(
+                          "⚠️ Budget Alert",
+                          "Dear User\uD83C\uDF39 You have used you 80% of Income!"
+                      )
+                  }
+                }
+
+            }
+                else {
                 val previousIncome = sharedPref.getTotalIncome()
                 val totalIncome = amount + previousIncome
                 sharedPref.saveTotalIncome(totalIncome)
@@ -174,16 +212,30 @@ class ActivityCountExpense : AppCompatActivity(), CardAdapter.CardInterfaceListe
     }
 
     private fun toggleSelection(isExpense: Boolean) {
-        if (isExpense) {
-            binding.btnExpense.setBackgroundResource(R.drawable.btn_expense_selector)
-            binding.btnIncome.setBackgroundResource(R.drawable.default_background)
-        } else {
-            binding.btnIncome.setBackgroundResource(R.drawable.btn_income_selector)
-            binding.btnExpense.setBackgroundResource(R.drawable.default_background)
-        }
+
     }
 
     private fun filterCards(type: String): List<carditem> {
         return cardsList.filter { it.catageorytype == type }
+    }
+
+    // 🔹 Notification Function Added
+    private fun showNotification(title: String, message: String) {
+        val channelId = "fittrack_channel"
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId, "FitTrack Notifications", NotificationManager.IMPORTANCE_HIGH)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setSmallIcon(R.drawable.ic_launcher_foreground) // apna custom icon use karein
+            .setAutoCancel(true)
+            .build()
+
+        notificationManager.notify(1001, notification)
     }
 }

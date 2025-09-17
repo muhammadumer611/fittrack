@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B1D2C"
+    android:background="#EDEFF2"
     android:paddingTop="16dp">
 
     <!-- Top Bar -->
@@ -24,9 +24,9 @@
             android:layout_weight="1"
             android:text="Add Expenses"
             android:layout_marginStart="20dp"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/AddIncome"
@@ -49,7 +49,7 @@
             app:cornerRadius="20dp"
             android:layout_marginEnd="20dp"
             android:textStyle="bold"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#667EEA"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -95,7 +95,7 @@
         android:layout_below="@id/amountBox"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="20dp"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <!-- Type Buttons -->
     <LinearLayout
@@ -107,22 +107,24 @@
         android:layout_below="@id/typeLabel"
         android:layout_marginTop="8dp">
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnExpense"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="Expense"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:layout_marginStart="20dp"
             android:background="@drawable/btn_expense_selector" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIncome"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="Income"
             android:layout_weight="1"
             android:layout_marginEnd="20dp"
+            android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:background="@drawable/btn_income_selector" />
     </LinearLayout>
@@ -140,20 +142,21 @@
             android:id="@+id/categoryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:text="Category"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/editLabel"
+            android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textColor="@color/history_header"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
@@ -181,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:hint="Time"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#667EEA"
             android:textColorHint="@color/white" />
 
         <Button
@@ -190,7 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:hint="Date"
-            android:backgroundTint="#FFC107"
+            android:backgroundTint="#667EEA"
             android:layout_marginEnd="20dp"
             android:layout_alignParentEnd="true"
             android:textColorHint="@color/white" />
@@ -204,7 +207,7 @@
         android:text="Note"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_below="@id/dateTimeSection"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp" />
@@ -217,6 +220,7 @@
         android:layout_below="@id/noteLabel"
         android:layout_marginTop="15dp"
         app:cardElevation="20dp"
+        android:background="@color/white"
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="10dp">
 

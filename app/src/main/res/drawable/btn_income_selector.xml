@@ -2,7 +2,7 @@
     <!-- Selected state -->
     <item android:state_selected="true">
         <shape android:shape="rectangle">
-            <solid android:color="#FFC107"/> <!-- Yellow background -->
+            <solid android:color="#667EEA"/> <!-- Yellow background -->
             <stroke android:width="3dp" android:color="#4CAF50"/> <!-- Green stroke -->
             <corners android:radius="12dp"/>
         </shape>
@@ -11,7 +11,7 @@
     <!-- Default state -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FFC107"/> <!-- Yellow background -->
+            <solid android:color="#667EEA"/> <!-- Yellow background -->
             <stroke android:width="3dp" android:color="#FFFFFF"/> <!-- White stroke -->
             <corners android:radius="12dp"/>
         </shape>

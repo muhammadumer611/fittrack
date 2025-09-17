@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B1D2C"
+    android:background="#EDEFF2"
     tools:context=".ActivityDashBoard">
 
     <!-- Fragment/Container -->
@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/backgroung"
-        app:itemIconTint="@color/resource_color"
-        app:itemTextColor="@color/resource_color"
+        app:itemIconTint="@color/teal_200"
+        android:elevation="20dp"
+        app:itemTextColor="@color/darker_gray"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav" />
 

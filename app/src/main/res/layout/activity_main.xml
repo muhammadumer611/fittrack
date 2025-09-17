@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#031523"
+    android:background="@drawable/onboardingbackground"
     tools:context=".MainActivity">
 
     <!-- Skip Button -->
@@ -17,7 +17,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="Skip"
-        android:textSize="14sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:fontFamily="sans-serif-medium" />
 
@@ -52,6 +53,7 @@
         android:layout_marginBottom="20dp"
         android:text="Back"
         android:textSize="14sp"
+        android:visibility="gone"
         android:textColor="@android:color/white"
         android:fontFamily="sans-serif-medium" />
 
@@ -65,7 +67,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:text="Next"
-        android:textSize="14sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:fontFamily="sans-serif-medium" />
 

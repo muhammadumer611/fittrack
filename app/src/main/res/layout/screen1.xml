@@ -2,31 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    android:gravity="center"
+    android:padding="20dp">
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/blob1"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textSize="30dp"
-        android:layout_gravity="center"
-        />
+        android:textSize="28sp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"/>
+
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:gravity="center"/>
 
 </LinearLayout>

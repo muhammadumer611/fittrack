@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B1D2C"
+    android:background="#EDEFF2"
     tools:context=".dashboardfragment">
 
     <!-- Greeting Text -->
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Hello,"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"/>
@@ -26,6 +26,7 @@
         android:layout_height="180dp"
         android:layout_below="@+id/hello"
         android:layout_margin="20dp"
+        android:background="@color/white"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         >
@@ -104,19 +105,20 @@
         android:textSize="25dp"
         android:layout_marginStart="20dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
     <!-- RecyclerView -->
+
+    <!-- Floating Action Button -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/quickadd"
-        android:layout_marginTop="5dp"
-      android:paddingHorizontal="20dp"/>
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="20dp" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -126,6 +128,7 @@
         android:layout_margin="20dp"
         android:contentDescription="Add Expense"
         app:srcCompat="@android:drawable/ic_input_add"
+        app:backgroundTint="#667EEA"
          />
 
 </RelativeLayout>

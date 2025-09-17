@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(Binding.root)
 
         val items = listOf(
-            Onboardingitem(R.drawable.ic_launcher_foreground, "Welcome", "Track your fitness easily"),
-            Onboardingitem(R.drawable.ic_launcher_foreground, "Features", "Check steps, calories and more"),
-            Onboardingitem(R.drawable.ic_launcher_foreground, "Get Started", "Let’s start your journey")
+            Onboardingitem(R.drawable.fiance, "Track Spending", "Add daily expenses in a tap"),
+            Onboardingitem(R.drawable.revenue, "Know Your Income", "See what you earn, anytime"),
+            Onboardingitem(R.drawable.personal_finance, "Smart Insights", "Stay notified, control your money")
         )
 
         adapter = OnboardingAdapter(items)
